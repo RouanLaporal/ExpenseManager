@@ -1,0 +1,9 @@
+controllers:
+    resource:
+        path: ../../src/Infrastructure/Symfony/Controller/
+        namespace: Infrastructure\Symfony\Controller
+    type: attribute
+
+kernel:
+    resource: Infrastructure\Symfony\Kernel
+    type: attribute
