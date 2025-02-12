@@ -10,7 +10,7 @@ Class CreateUserUseCase{
 
     public IUserGateway $userGateway;
 
-    public function __construct(IUserGateway $userGateway){
+    public function __construct($userGateway){
         $this->userGateway = $userGateway;
     }
 
