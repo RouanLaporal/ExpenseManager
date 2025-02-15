@@ -1,0 +1,6 @@
+2025/02/15 09:59:57 [emerg] 1#1: host not found in upstream "php-fpm" in /etc/nginx/nginx.conf:33
+2025/02/15 10:00:27 [emerg] 1#1: host not found in upstream "php-fpm" in /etc/nginx/nginx.conf:33
+2025/02/15 10:09:27 [emerg] 1#1: host not found in upstream "php-fpm" in /etc/nginx/nginx.conf:33
+2025/02/15 10:10:50 [emerg] 1#1: host not found in upstream "php-fpm" in /etc/nginx/nginx.conf:33
+2025/02/15 12:22:46 [emerg] 1#1: open() "/etc/nginx/fastcgi_param" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:28
+2025/02/15 12:25:17 [emerg] 1#1: open() "/etc/nginx/fastcgi_param" failed (2: No such file or directory) in /etc/nginx/conf.d/default.conf:28
