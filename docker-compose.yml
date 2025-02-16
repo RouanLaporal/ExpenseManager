@@ -33,4 +33,3 @@ services:
             - php
         ports:
             - "1080:80"
-    

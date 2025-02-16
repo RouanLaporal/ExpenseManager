@@ -47,7 +47,7 @@ class UserController extends AbstractController{
     public function createAction(
         Request $request, 
         IUserGateway $userGateway,
-        CreateUserPresenterToJson $createUserPresenterToJson
+        CreateUserPresenterToJson $createUserPresenterToJson,
     ){
         $requestBody = json_decode($request->getContent());
         $createUserRequest = new UserCreateUserRequest();
