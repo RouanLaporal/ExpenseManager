@@ -24,4 +24,23 @@ Class User{
         $this->id = $id;
     }
 
+    public function setId(string $id){
+        $this->id = $id;
+    }
+    public function getId(){
+        return $this->id;
+    }
+    public function getFirstName() : string{
+        return $this->firstName;
+    }
+
+    public function getLastName() : string{
+        return $this->lastName;
+    }
+    public function getEmail() : string{
+        return $this->email;
+    }
+    public function getPassword() : string{
+        return $this->password;
+    }
 }

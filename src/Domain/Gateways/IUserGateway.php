@@ -5,7 +5,8 @@ namespace Domain\Gateways;
 use Domain\Entity\User;
 
 interface IUserGateway{
-    public function createUser(User $user);
+    public function add(User $user);
+    public function findByEmail(string $email) : ?User;
 }
     
 

@@ -14,19 +14,21 @@ Class CreateUserUseCase{
         $this->userGateway = $userGateway;
     }
 
-    public function execute(CreateUserRequest $createUserRequest) : CreateUserResponse{
+    public function execute(CreateUserRequest $createUserRequest): CreateUserResponse{
         
         try{
+            $userToCreate = $createUserRequest->getUserToCreate();  
+            $this->userGateway->add($userToCreate);
             $response = new CreateUserResponse();
-            $userToCreate = $createUserRequest->getUserToCreate();
-            $userCreationResponse = $this->userGateway->createUser($userToCreate);//TODO: implement response return
             $response->setStatusSuccess();
-            $response->setSuccessMessage('User created successfully');
+            $response->setMessage('User successfully created');
             return $response;
         }catch(\Exception $e){
             $response = new CreateUserResponse();
             $response->setStatusError();
-            $response->setErrorMessage('Error when creating the user');
+            $response->setCode($e->getCode());
+            $response->setMessage($e->getMessage());
+            return $response;
         }
 
     }
