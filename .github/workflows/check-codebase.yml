@@ -17,3 +17,6 @@ jobs:
 
     - name: Test
       run: php bin/phpunit
+    
+    - name: Deptrac
+      run: php vendor/bin/deptrac analyze --no-cache
