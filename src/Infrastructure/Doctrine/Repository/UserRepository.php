@@ -6,7 +6,6 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Domain\Entity\User;
 use Domain\Gateways\IUserGateway;
-use Domain\Response\User\CreateUserResponse;
 use Infrastructure\Doctrine\Entity\Users;
  
 class UserRepository extends ServiceEntityRepository implements IUserGateway
@@ -21,13 +20,31 @@ class UserRepository extends ServiceEntityRepository implements IUserGateway
         try{
         
             $users=new Users((array)$newUser);
+
+            if($this->findByEmail($newUser->getEmail())){
+                throw new \Exception('User already exists', 400);
+            }
         
             $entityManager = $this->getEntityManager();
             $entityManager->persist($users);
             $entityManager->flush();
         }catch(\Exception $e){
-            throw new \Exception('User creation failed', 500);
+            throw new \Exception("User creation failed : ". $e->getMessage(), 500);
         }
+    }
+
+    public function findByEmail(string $email): ?User{
+        $user = $this->findOneBy(['email' => $email]);
+        if($user){
+            return new User(
+                $user->getId(),
+                $user->getFirstName(),
+                $user->getLastName(),
+                $user->getEmail(),
+                $user->getPassword()
+            );
+        }
+        return null;
     }
 
     

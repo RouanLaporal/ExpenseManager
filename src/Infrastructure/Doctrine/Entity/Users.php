@@ -3,44 +3,21 @@
 namespace Infrastructure\Doctrine\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-/**
-* Users
-*
-* @ORM\Table(name="users")
-* @ORM\Entity
-*/
+use Infrastructure\Doctrine\Repository\UserRepository;
+
+#[ORM\Entity(repositoryClass: UserRepository::class)]
 Class Users{
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="PR_PKEY", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
     private $user_id;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="first_name", type="string", length=100, nullable=false)
-     */
+    #[ORM\Column(length: 255)]
     private string $firstName;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="last_name", type="string", length=100, nullable=false)
-     */
+    #[ORM\Column(length: 255)]
     private string $lastName;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=100, nullable=false)
-     */
+    #[ORM\Column(length: 255)]
     private string $email;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=100, nullable=false)
-     */
+    #[ORM\Column(length: 255)]
     private string $password;
 
     public function __construct(array $dataList = []) {
@@ -53,8 +30,8 @@ Class Users{
          }
     }
 
-    public function setId(string $user_id){
-        $this->$user_id = $user_id;
+    public function getId() : ?int{
+       return $this->user_id;
     }
 
     public function getFirstName() : ?string{

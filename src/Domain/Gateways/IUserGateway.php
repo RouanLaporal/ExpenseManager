@@ -6,6 +6,7 @@ use Domain\Entity\User;
 
 interface IUserGateway{
     public function add(User $user);
+    public function findByEmail(string $email) : ?User;
 }
     
 
