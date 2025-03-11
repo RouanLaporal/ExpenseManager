@@ -9,11 +9,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class CreateUserPresenterToJson{
 
     public function present(CreateUserResponse $response){
-        $content=(object)[];
         if($response->getStatus()){
-            $statusCode=200;
-            $content->message = $response->getSuccessMessage();
-        }     
+            $statusCode=$response->getCode();
+            $content = $response->getMessage();
+        }else{
+            $statusCode=$response->getCode();
+            $content = $response->getMessage();
+        }    
 
         $jsonResponse=new JsonResponse();
         $jsonResponse->setStatusCode($statusCode);

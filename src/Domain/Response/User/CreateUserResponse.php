@@ -7,10 +7,13 @@ use Domain\Entity\User;
 Class CreateUserResponse{
 
     private User $user;
+    private int $code = 200;
     private bool $status;
     private string $message;
 
-
+    public function setCode($code){
+        $this->code = $code;
+    }
 
     public function setStatusSuccess(){
         $this->status = true;
@@ -20,19 +23,19 @@ Class CreateUserResponse{
         $this->status = false;
     }
 
-    public function setSuccessMessage(String $message){
+    public function setMessage(String $message){
         $this->message = $message;
     }
 
-    public function setErrorMessage(String $message){
-        $this->message = $message;
+    public function getCode(){
+        return $this->code;
     }
 
     public function getStatus(){
         return $this->status;
     }
 
-    public function getSuccessMessage(){
+    public function getMessage(){
         return $this->message;
     }
 
