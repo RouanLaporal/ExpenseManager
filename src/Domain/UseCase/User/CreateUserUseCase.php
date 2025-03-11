@@ -17,7 +17,7 @@ Class CreateUserUseCase{
     public function execute(CreateUserRequest $createUserRequest): CreateUserResponse{
         
         try{
-            $userToCreate = $createUserRequest->getUserToCreate();
+            $userToCreate = $createUserRequest->getUserToCreate();  
             $this->userGateway->add($userToCreate);
             $response = new CreateUserResponse();
             $response->setStatusSuccess();

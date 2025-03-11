@@ -27,7 +27,9 @@ Class User{
     public function setId(string $id){
         $this->id = $id;
     }
-
+    public function getId(){
+        return $this->id;
+    }
     public function getFirstName() : string{
         return $this->firstName;
     }

@@ -18,8 +18,7 @@ class UserRepository extends ServiceEntityRepository implements IUserGateway
  
     public function add(User $newUser): void{
         try{
-        
-            $users=new Users((array)$newUser);
+            $users=new Users($newUser);
 
             if($this->findByEmail($newUser->getEmail())){
                 throw new \Exception('User already exists', 400);
