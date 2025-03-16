@@ -3,12 +3,13 @@
 namespace Infrastructure\Doctrine\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Domain\Entity\AbstractEntity;
 use Infrastructure\Doctrine\Repository\UserRepository;
 use Domain\Entity\User;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: "users")]
-Class Users{
+Class Users extends AbstractEntity{
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -22,12 +23,8 @@ Class Users{
     #[ORM\Column(length: 255, nullable: false)]
     private string $password;
 
-    public function __construct(User $user){
-        $this->user_id = $user->getId();
-        $this->firstName = $user->getFirstName();
-        $this->lastName = $user->getLastName();
-        $this->email = $user->getEmail();
-        $this->password = $user->getPassword();   
+    public function __construct(array $user){
+       $this->hydrate($user);   
     }
 
     public function getId(){

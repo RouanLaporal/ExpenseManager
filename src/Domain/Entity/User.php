@@ -2,33 +2,22 @@
 
 namespace Domain\Entity;
 
-Class User{
+Class User extends AbstractEntity{
     
-    private $id;
+    private $userId;
     private string $firstName;
     private string $lastName;
     private string $email;
     private string $password;
 
     public function __construct(
-        string $id,
-        string $firstName,
-        string $lastName,
-        string $email,
-        string $password 
+        array $data = []
     ) {
-        $this->email = $email;
-        $this->password = $password;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->id = $id;
+       $this->hydrate($data);
     }
 
-    public function setId(string $id){
-        $this->id = $id;
-    }
     public function getId(){
-        return $this->id;
+        return $this->userId;
     }
     public function getFirstName() : string{
         return $this->firstName;
@@ -42,5 +31,25 @@ Class User{
     }
     public function getPassword() : string{
         return $this->password;
+    }
+
+    public function setFirstName(string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    public function setLastName(string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
     }
 }

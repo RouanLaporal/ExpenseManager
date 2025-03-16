@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use OpenApi\Attributes as OA;
 use OpenApi\Attributes\JsonContent;
 use OpenApi\Attributes\Property;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
 class UserController extends AbstractController{
     
@@ -51,13 +52,13 @@ class UserController extends AbstractController{
     ){
         $requestBody = json_decode($request->getContent());
         $createUserRequest = new UserCreateUserRequest();
-        $createUserRequest->setUserToCreate(new User(
-            $requestBody->id,
-            $requestBody->firstName,
-            $requestBody->lastName,
-            $requestBody->email,
-            $requestBody->password
-        ));
+        $userDataList = array(
+            "firstName" => $requestBody->firstName,
+            "lastName" => $requestBody->lastName,
+            "email" => $requestBody->email,
+            "password" => $requestBody->password
+        );
+        $createUserRequest->setUserToCreate(new User($userDataList));
         $createUserUseCase = new CreateUserUseCase($userGateway);
         $response = $createUserUseCase->execute($createUserRequest);
         return $createUserPresenterToJson->present($response);  
